@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import './App.css'
 import FileName from './FileName';
 import UploadBar from "./UploadBar";
+import { UploadForm,fileSchema } from './Validation';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 function App() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -10,66 +13,95 @@ function App() {
   const [progress, setProgress] = useState(0);
   const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
 
+  const {
+    handleSubmit,
+    setValue,
+  } = useForm<UploadForm>({
+    resolver: zodResolver(fileSchema),
+  });
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files && event.target.files[0];
+
+
+  const handleFileChange = (file: File) => {
     if (file) {
       setFileName(file.name);
       setIsShowing(true);
-      setProgress(0); 
-
+      setProgress(0);
 
       const newIntervalId = setInterval(() => {
         setProgress((prev) => {
-          const nextProgress = prev + 10;
+          const nextProgress = prev + 8;
           if (nextProgress >= 100) {
             clearInterval(newIntervalId);
             return 100;
           }
           return nextProgress;
         });
-      }, 100);
+      }, 200);
       setIntervalId(newIntervalId);
     }
+    console.log(file.name);
   };
 
 
-  const onChooseFile = () => {
+  /*const onChooseFile = () => {
     inputRef.current?.click()
   }
-
-
-  const removeFileHandler = () => { 
-    setIsShowing(false);
+    
+    const onSubmit = (data: UploadForm) => {
+  if (data.file) {
+    handleFileChange(data.file);
   }
-
-    useEffect(() => {
-      return () => {
-        if (intervalId) {
-          clearInterval(intervalId);
-        }
-      };
-    }, [intervalId]);
+};
+  */
 
   
-
   
+  const removeFileHandler = () => {
+    setIsShowing(false);
+  };
+
+
+
+  const onSubmit = () => {
+    inputRef.current?.click();
+  };
+
+
+
+  useEffect(() => {
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [intervalId]);
+
+
 
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="h-screen p-8 flex flex-col justify-center">
         <div className="flex flex-col items-center justify-center rounded-md bg-purple-50">
           <input
             ref={inputRef}
             type="file"
-            onChange={handleFileChange}
+            onChange={(e) => {
+              const file = e.target.files && e.target.files[0];
+              if (file) {
+                setValue("file", file);
+                handleFileChange(file);
+              }
+            }}
             className=" self-start mb-4 p-2 border rounded-md"
             style={{ display: "none" }}
           />
           <div className="self-start mb-4">
             <button
+              disabled={isShowing}
+              type="submit"
               className="w-28 mb-0 ml-2 mt-2 p-2 bg-[#52249ddb] border-4 rounded-md border-solid border-[#9f84c1d9] text-white"
-              onClick={onChooseFile}
+              //onClick={onChooseFile}
             >
               Browse..
             </button>
@@ -90,7 +122,7 @@ function App() {
           )}
         </div>
       </div>
-    </>
+    </form>
   );
 }
 
