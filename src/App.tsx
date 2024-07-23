@@ -21,14 +21,14 @@ function App() {
 
       const newIntervalId = setInterval(() => {
         setProgress((prev) => {
-          const nextProgress = prev + 10;
+          const nextProgress = prev + 8;
           if (nextProgress >= 100) {
             clearInterval(newIntervalId);
             return 100;
           }
           return nextProgress;
         });
-      }, 100);
+      }, 200);
       setIntervalId(newIntervalId);
     }
   };
@@ -68,7 +68,8 @@ function App() {
           />
           <div className="self-start mb-4">
             <button
-              className="w-28 mb-0 ml-2 mt-2 p-2 bg-[#52249ddb] border-4 rounded-md border-solid border-[#9f84c1d9] text-white"
+              disabled={isShowing}
+              className="w-28 mb-0 ml-2 mt-2 p-2 bg-[#52249ddb] border-4 rounded-md border-solid border-[#9f84c1d9] text-white  hover:bg-[#755ab3] transform hover:scale-105 transition duration-300"
               onClick={onChooseFile}
             >
               Browse..
