@@ -40,7 +40,12 @@ function App() {
 
 
   const removeFileHandler = () => { 
+    setFileName("");
+    setProgress(0);
     setIsShowing(false);
+    if (inputRef.current?.value) {
+      inputRef.current.value = "";
+    }
   }
 
     useEffect(() => {
