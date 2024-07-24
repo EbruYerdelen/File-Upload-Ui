@@ -21,14 +21,14 @@ function App() {
 
       const newIntervalId = setInterval(() => {
         setProgress((prev) => {
-          const nextProgress = prev + 8;
+          const nextProgress = prev + 12;
           if (nextProgress >= 100) {
             clearInterval(newIntervalId);
             return 100;
           }
           return nextProgress;
         });
-      }, 200);
+      }, 150);
       setIntervalId(newIntervalId);
     }
   };
