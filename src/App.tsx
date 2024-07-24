@@ -74,7 +74,7 @@ function App() {
           <div className="self-start mb-4">
             <button
               disabled={isShowing}
-              className="w-28 mb-0 ml-2 mt-2 p-2 bg-[#52249ddb] border-4 rounded-md border-solid border-[#9f84c1d9] text-white  hover:bg-[#755ab3] transform hover:scale-105 transition duration-300"
+              className="w-28 mb-0 ml-2 mt-2 p-2 bg-[#52249ddb] border-4 rounded-md border-solid border-[#9f84c1d9] text-white  hover:bg-[#6d4cbb]"
               onClick={onChooseFile}
             >
               Browse..
