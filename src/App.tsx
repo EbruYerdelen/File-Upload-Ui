@@ -63,6 +63,7 @@ const onSubmit : SubmitHandler<UploadForm>= (data) => {
                 if (file) {
                   setValue("file", file);
                   handleFileChange(file);
+                  e.target.value = "";
                 }
               }}
               className=" self-start mb-4 p-2 border rounded-md"

@@ -7,17 +7,17 @@ interface FileUploadProps {
 }
 
 const FileName = ({ fileName, isSubmitted }: FileUploadProps) => {
-  const truncatedFileName = truncateFileName(fileName, 24);
+  const truncatedFileName = truncateFileName(fileName, 20);
   return (
     <>
       {fileName ? (
         <span
-          className={`p-[5px] ml-3 ${isSubmitted ? "font-medium text-[#1d1d1de3]" : "font-thin text-[rgba(105,105,105,0.78)]"} text-md `}
+          className={`p-[5px] ml-3 ${isSubmitted ? "font-medium text-[#1d1d1de3]" : "font-thin text-[rgba(105,105,105,0.78)]"} text-sm `}
         >
           {isSubmitted ? (
             <div className="flex justify-center items-center gap-[2px]">
               <File size={26} color="#1d1d1de3" />
-              <span>{truncatedFileName}</span>
+              <span className="sm:text-base">{truncatedFileName}</span>
             </div>
           ) : (
             <div className="flex justify-center items-center gap-[2px]">
