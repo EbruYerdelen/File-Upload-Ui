@@ -1,11 +1,13 @@
 import { File, FileDashed } from "@phosphor-icons/react";
+import { truncateFileName } from "./utils";
 
 interface FileUploadProps {
   fileName: string;
   isSubmitted: boolean;
 }
 
-const FileName = ({ fileName , isSubmitted }: FileUploadProps) => {
+const FileName = ({ fileName, isSubmitted }: FileUploadProps) => {
+  const truncatedFileName = truncateFileName(fileName, 16);
   return (
     <>
       {fileName ? (
@@ -15,12 +17,12 @@ const FileName = ({ fileName , isSubmitted }: FileUploadProps) => {
           {isSubmitted ? (
             <div className="flex justify-center items-center gap-[2px]">
               <File size={26} color="#1d1d1de3" />
-              <span>{fileName}</span>
+              <span>{truncatedFileName}</span>
             </div>
           ) : (
             <div className="flex justify-center items-center gap-[2px]">
               <FileDashed size={26} color="#afafaf" />
-              <span>{fileName}</span>
+              <span>{truncatedFileName}</span>
             </div>
           )}
         </span>
