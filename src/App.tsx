@@ -25,7 +25,7 @@ function App() {
     if (file) {
       setFileName(file.name);
     }
-    console.log(file.name);
+    console.log(file.name);//checking if file.name is properly evaluated.
   };
 
 
@@ -43,7 +43,7 @@ function App() {
 const onSubmit : SubmitHandler<UploadForm>= (data) => {
   if (data.file) {
     setIsSubmitted(true);
-    console.log(data.file);
+    console.log(data.file);//a check to ensure submission is executed and file data is properly taken.
   }
 };
 
@@ -73,7 +73,7 @@ const onSubmit : SubmitHandler<UploadForm>= (data) => {
                 disabled={fileName ? true : false}
                 type="button"
                 onClick={() => inputRef.current?.click()}
-                className="w-28 mb-0 ml-2 mt-2 p-2 bg-[#52249ddb] border-4 rounded-md border-solid border-[#9f84c1d9] text-white"
+                className="w-28 mb-0 ml-2 mt-3 p-2 bg-[#52249ddb] border-4 rounded-md border-solid border-[#9f84c1d9] text-white"
               >
                 Browse..
               </button>
@@ -85,7 +85,7 @@ const onSubmit : SubmitHandler<UploadForm>= (data) => {
             {fileName && (
               <div className="h-20 p-1 pl-4 pr-5  w-full flex items-center justify-between gap-2 rounded-md">
                 <button
-                  className="font-medium text-[rgba(29,29,29,0.89)]"
+                  className="font-medium text-[#181818ee]"
                   disabled={isSubmitted}
                   type="submit"
                 >
