@@ -7,7 +7,7 @@ interface FileUploadProps {
 }
 
 const FileName = ({ fileName, isSubmitted }: FileUploadProps) => {
-  const truncatedFileName = truncateFileName(fileName, 16);
+  const truncatedFileName = truncateFileName(fileName, 24);
   return (
     <>
       {fileName ? (
