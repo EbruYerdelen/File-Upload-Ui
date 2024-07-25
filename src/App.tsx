@@ -65,12 +65,12 @@ function App() {
                 disabled={fileName ? true : false}
                 type="button"
                 onClick={() => inputRef.current?.click()}
-                className="w-28 mb-0 ml-2 mt-2 p-2 bg-[#52249ddb] border-4 rounded-md border-solid border-[#9f84c1d9] text-white"
+                className="w-28 mb-0 ml-2 mt-2 p-2 bg-[#52249ddb] border-4 rounded-md border-solid border-[#9f84c1d9] text-white hover:bg-[#663fa7db]"
               >
                 Browse..
               </button>
             </div>
-            <FileName fileName={fileName}/>
+            <FileName fileName={fileName} />
           </div>
 
           <div>
