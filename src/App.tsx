@@ -74,7 +74,7 @@ const onSubmit : SubmitHandler<UploadForm>= (data) => {
                 disabled={fileName ? true : false}
                 type="button"
                 onClick={() => inputRef.current?.click()}
-                className="w-28 mb-0 ml-2 mt-3 p-2 bg-[#52249ddb] border-4 rounded-md border-solid border-[#7a51bdc9] text-white hover:bg-purple-500"
+                className="w-28 mb-0 ml-2 mt-3 p-2 bg-[#52249ddb] border-4 rounded-md border-solid border-[#9f84c1d9] text-white hover:bg-[#663fa7db]"
               >
                 Browse..
               </button>
