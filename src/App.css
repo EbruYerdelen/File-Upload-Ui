@@ -1,0 +1,16 @@
+@keyframes dash {
+  to {
+    background-position: 100% 0;
+  }
+}
+
+.dashed-border-animation {
+  @apply border-[0.1px] border-dashed rounded-md;
+  border-color: rgba(175, 175, 175, 0.932);
+  background-image: linear-gradient(to right, rgba(182, 179, 185, 0.644) 50%, rgba(255, 255, 255, 0) 0%);
+  background-size: 200% 100%;
+  background-position: 0 0;
+  animation: dash 3s linear infinite;
+  margin-left: 10px;
+  margin-bottom: 3px;
+}

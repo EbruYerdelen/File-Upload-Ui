@@ -1,15 +1,22 @@
 interface FileUploadProps {
-  show: boolean;
   fileName: string;
+  isSubmitted: boolean;
 }
 
-const FileName = ({ show, fileName }: FileUploadProps) => {
+const FileName = ({ fileName , isSubmitted }: FileUploadProps) => {
+  console.log(isSubmitted)
   return (
     <>
-      {show && (
-        <div className="self-start p-3 pb-0 text-gray-700 font-medium text-md ">
+      {fileName ? (
+        <span
+          className={`p-[5px] ml-3 ${isSubmitted ? "font-medium text-[rgba(29,29,29,0.89)]" : "font-thin text-[rgba(105,105,105,0.78)] dashed-border-animation"} text-md `}
+        >
           {fileName}
-        </div>
+        </span>
+      ) : (
+        <span className="p-3 text-[rgba(102,101,101,0.77)] font-thin text-md ">
+          No file selected
+        </span>
       )}
     </>
   );
