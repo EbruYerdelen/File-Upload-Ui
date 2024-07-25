@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import './App.css'
+import "./index.css";
 import FileName from './FileName';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { XCircle } from "@phosphor-icons/react";
