@@ -16,13 +16,13 @@ const FileName = ({ fileName, isSubmitted }: FileUploadProps) => {
         >
           {isSubmitted ? (
             <div className="flex justify-center items-center gap-[2px]">
-              <File size={26} color="#1d1d1de3" />
+              <File size={28} color="#1d1d1de3" />
               <span className="sm:text-base">{truncatedFileName}</span>
             </div>
           ) : (
             <div className="flex justify-center items-center gap-[2px]">
-              <FileDashed size={26} color="#afafaf" />
-              <span>{truncatedFileName}</span>
+              <FileDashed size={28} color="#afafaf" />
+              <span className="text-[16px]">{truncatedFileName}</span>
             </div>
           )}
         </span>
