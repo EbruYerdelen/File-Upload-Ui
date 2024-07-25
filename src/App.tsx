@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import "./index.css";
 import FileName from './FileName';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import {useForm } from 'react-hook-form';
 import { XCircle } from "@phosphor-icons/react";
 
 type UploadForm = {
@@ -11,11 +11,9 @@ type UploadForm = {
 function App() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [fileName, setFileName] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const {
     register,
-    handleSubmit,
     setValue,
   } = useForm<UploadForm>();
 
@@ -34,23 +32,17 @@ function App() {
   const removeFileHandler = () => {
     setFileName("");
     setValue("file", null);
-    setIsSubmitted(false);
   };
 
 
 
 
-const onSubmit : SubmitHandler<UploadForm>= (data) => {
-  if (data.file) {
-    setIsSubmitted(true);
-    console.log(data.file);
-  }
-};
+
 
 
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form>
       <div className="h-screen p-8 flex flex-col justify-center">
         <div className="flex items-center justify-between rounded-md bg-[#f2edf8b0]">
           <div className="flex justify-center items-center">
@@ -78,19 +70,12 @@ const onSubmit : SubmitHandler<UploadForm>= (data) => {
                 Browse..
               </button>
             </div>
-            <FileName fileName={fileName} isSubmitted={isSubmitted} />
+            <FileName fileName={fileName}/>
           </div>
 
           <div>
             {fileName && (
               <div className="h-20 p-1 pl-4 pr-5  w-full flex items-center justify-between gap-2 rounded-md">
-                <button
-                  className="font-medium text-[rgba(29,29,29,0.89)]"
-                  disabled={isSubmitted}
-                  type="submit"
-                >
-                  Submit
-                </button>
                 <button type="button" onClick={removeFileHandler}>
                   <XCircle size={32} color="#5f4186" />
                 </button>
