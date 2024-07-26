@@ -12,7 +12,6 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   args: {
     fileName: "filename",
-    isSubmitted: true,
+  },
 
-  }
 };
