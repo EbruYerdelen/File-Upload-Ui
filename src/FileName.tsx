@@ -4,8 +4,11 @@ interface FileUploadProps {
   fileName: string;
 }
 
+
 const FileName = ({ fileName }: FileUploadProps) => {
+
   const truncatedFileName = truncateFileName(fileName, 20);
+  
   return (
     <>
       {fileName ? (

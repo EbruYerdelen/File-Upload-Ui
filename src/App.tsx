@@ -5,6 +5,7 @@ import {useForm } from 'react-hook-form';
 import { XCircle } from "@phosphor-icons/react";
 import BrowseButton from './BrowseButton';
 
+
 type UploadForm = {
   file: File | null;
 }
@@ -25,7 +26,7 @@ function App() {
     if (file) {
       setFileName(file.name);
     }
-    console.log(file.name);
+    console.log(file.name);//checking if file.name is properly evaluated.
   };
 
 
@@ -36,9 +37,6 @@ function App() {
     setValue("file", null);
     setButtonName("Browse");
   };
-
-
-
 
 
 
@@ -60,11 +58,13 @@ function App() {
                   handleFileChange(file);
                   setButtonName("Browsed");
                   e.target.value = "";
+
                 }
               }}
               className=" self-start border rounded-md"
               style={{ display: "none" }}
             />
+
             <div className="self-start">
               <BrowseButton fileName={fileName} inputRef={inputRef} buttonName={buttonName} />
             </div>
@@ -74,11 +74,13 @@ function App() {
           <div>
             {fileName && (
               <div className="h-20 p-1 pl-4 pr-5  w-full flex items-center justify-between gap-2 rounded-md">
+                
                 <button
                   type="button"
                   onClick={removeFileHandler}
                   className="transform transition-transform duration-200 hover:scale-105"
                 >
+
                   <XCircle size={32} color="#5f4186" />
                 </button>
               </div>
