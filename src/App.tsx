@@ -3,12 +3,14 @@ import "./index.css";
 import FileName from './FileName';
 import {useForm } from 'react-hook-form';
 import { XCircle } from "@phosphor-icons/react";
+import BrowseButton from './BrowseButton';
 
 type UploadForm = {
   file: File | null;
 }
 
 function App() {
+  const [buttonName, setButtonName] = useState("Browse");
   const inputRef = useRef<HTMLInputElement>(null);
   const [fileName, setFileName] = useState("");
 
@@ -32,6 +34,7 @@ function App() {
   const removeFileHandler = () => {
     setFileName("");
     setValue("file", null);
+    setButtonName("Browse");
   };
 
 
@@ -55,21 +58,15 @@ function App() {
                 if (file) {
                   setValue("file", file);
                   handleFileChange(file);
+                  setButtonName("Browsed");
                   e.target.value = "";
                 }
               }}
-              className=" self-start mb-4 p-2 border rounded-md"
+              className=" self-start border rounded-md"
               style={{ display: "none" }}
             />
-            <div className="self-start mb-4">
-              <button
-                disabled={fileName ? true : false}
-                type="button"
-                onClick={() => inputRef.current?.click()}
-                className="w-28 mb-0 ml-2 mt-2 p-2 bg-[#52249ddb] border-4 rounded-md border-solid border-[#9f84c1d9] text-white hover:bg-[#663fa7db]"
-              >
-                Browse..
-              </button>
+            <div className="self-start">
+              <BrowseButton fileName={fileName} inputRef={inputRef} buttonName={buttonName} />
             </div>
             <FileName fileName={fileName} />
           </div>
