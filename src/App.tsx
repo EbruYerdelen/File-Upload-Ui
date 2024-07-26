@@ -76,7 +76,11 @@ function App() {
           <div>
             {fileName && (
               <div className="h-20 p-1 pl-4 pr-5  w-full flex items-center justify-between gap-2 rounded-md">
-                <button type="button" onClick={removeFileHandler}>
+                <button
+                  type="button"
+                  onClick={removeFileHandler}
+                  className="transform transition-transform duration-200 hover:scale-105"
+                >
                   <XCircle size={32} color="#5f4186" />
                 </button>
               </div>
