@@ -74,7 +74,7 @@ const onSubmit : SubmitHandler<UploadForm>= (data) => {
                 disabled={fileName ? true : false}
                 type="button"
                 onClick={() => inputRef.current?.click()}
-                className="w-28 mb-0 ml-2 mt-3 p-2 bg-[#52249ddb] border-4 rounded-md border-solid border-[#9f84c1d9] text-white hover:bg-[#663fa7db]"
+                className="w-28 mb-0 ml-2 mt-3 p-2 bg-[#52249ddb] border-4 rounded-md border-solid border-[#9f84c1d9] text-white hover:bg-[#693eade5]"
               >
                 Browse..
               </button>
@@ -86,13 +86,17 @@ const onSubmit : SubmitHandler<UploadForm>= (data) => {
             {fileName && (
               <div className="h-20 p-1 pl-4 pr-5  w-full flex items-center justify-between gap-2 rounded-md">
                 <button
-                  className="font-medium text-[#181818ee]"
+                  className="font-medium text-[#181818ee] transform transition-transform duration-100 hover:scale-[1.03]"
                   disabled={isSubmitted}
                   type="submit"
                 >
                   Submit
                 </button>
-                <button type="button" onClick={removeFileHandler}>
+                <button
+                  type="button"
+                  onClick={removeFileHandler}
+                  className="transform transition-transform duration-200 hover:scale-105"
+                >
                   <XCircle size={32} color="#5f4186" />
                 </button>
               </div>
