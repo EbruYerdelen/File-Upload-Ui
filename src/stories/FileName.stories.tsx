@@ -4,6 +4,13 @@ import FileName from "../FileName";
 const meta: Meta<typeof FileName> = {
   component: FileName,
   title: "FileName",
+  parameters: {
+    layout: "centered",
+  },
+  argTypes: {
+    fileName: { control: "text" },
+  },
+  tags: ["autodocs"],
 };
 export default meta;
 

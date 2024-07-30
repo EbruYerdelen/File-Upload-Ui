@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import "./index.css";
+import { useEffect, useRef, useState } from 'react';
+import "./App.css";
 import FileName from './FileName';
 import {useForm } from 'react-hook-form';
 import { XCircle } from "@phosphor-icons/react";
@@ -10,16 +10,33 @@ type UploadForm = {
   file: File | null;
 }
 
-function App() {
-  const [buttonName, setButtonName] = useState("Browse");
+type AppProps = {
+  initialButtonName?: string;
+  initialFileName?:string;
+}
+
+
+function App({initialButtonName= "Browse", initialFileName = ""}: AppProps) {
+  const [buttonName, setButtonName] = useState(initialButtonName);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [fileName, setFileName] = useState("");
+  const [fileName, setFileName] = useState(initialFileName);
 
   const {
     register,
     setValue,
   } = useForm<UploadForm>();
 
+
+
+useEffect(() => {
+  setButtonName(initialButtonName);
+}, [initialButtonName]);
+
+useEffect(() => {
+  setFileName(initialFileName);
+}, [initialFileName]);
+
+  
 
 
   const handleFileChange = (file: File) => {
@@ -35,7 +52,6 @@ function App() {
   const removeFileHandler = () => {
     setFileName("");
     setValue("file", null);
-    setButtonName("Browse");
   };
 
 
@@ -56,7 +72,6 @@ function App() {
                 if (file) {
                   setValue("file", file);
                   handleFileChange(file);
-                  setButtonName("Browsed");
                   e.target.value = "";
 
                 }
