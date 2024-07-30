@@ -30,10 +30,3 @@ export const Browse: Story = {
 };
 
 
-export const Browsed: Story = {
-  args: {
-    buttonName: "Browsed",
-  },
-};
-
-
