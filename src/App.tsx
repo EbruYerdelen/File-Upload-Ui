@@ -73,6 +73,7 @@ useEffect(() => {
                   setValue("file", file);
                   handleFileChange(file);
                   e.target.value = "";
+
                 }
               }}
               className=" self-start border rounded-md"
@@ -80,11 +81,7 @@ useEffect(() => {
             />
 
             <div className="self-start">
-              <BrowseButton
-                fileName={fileName}
-                inputRef={inputRef}
-                buttonName={buttonName}
-              />
+              <BrowseButton fileName={fileName} inputRef={inputRef} buttonName={buttonName} />
             </div>
             <FileName fileName={fileName} />
           </div>
@@ -92,12 +89,13 @@ useEffect(() => {
           <div>
             {fileName && (
               <div className="h-20 p-1 pl-4 pr-5  w-full flex items-center justify-between gap-2 rounded-md">
+                
                 <button
-                  data-testid="removeFile"
                   type="button"
                   onClick={removeFileHandler}
                   className="transform transition-transform duration-200 hover:scale-105"
                 >
+
                   <XCircle size={32} color="#5f4186" />
                 </button>
               </div>
