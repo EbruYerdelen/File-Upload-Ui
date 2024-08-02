@@ -17,7 +17,7 @@ describe(App, () => {
   it("Displays and renders the button containing XCircle icon when initial file name is provided", () => {
     render(<App initialFileName="example.txt" />);
 
-    // We are checking if the Browse button is rendered
+    // We are checking if the Browse button is rendered.
     const removeFileButton = screen.getByTestId("removeFile");
     expect(removeFileButton).toBeInTheDocument();
 
