@@ -1,4 +1,4 @@
-import { IUiOrientation, IUiSize, IUiVariant } from "../interfaces";
+import { IUiOrientation, IUiSize, IUiVariant } from "../../interfaces";
 
 export interface CheckboxList {
     id:number,

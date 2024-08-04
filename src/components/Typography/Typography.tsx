@@ -1,6 +1,6 @@
 import React from 'react';
 import { ITypographyProps } from "./Typography.types";
-import { classNames } from '../helpers/styleHelpers';
+import { classNames } from '../../helpers/styleHelpers';
 
 
 const Typography = (props: ITypographyProps): JSX.Element => {

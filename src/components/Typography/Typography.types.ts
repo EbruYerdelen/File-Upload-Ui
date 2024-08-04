@@ -1,4 +1,4 @@
-import { IUiAlignment, TypographyVariant } from "../interfaces"
+import { IUiAlignment, TypographyVariant } from "../../interfaces"
 
 export interface ITypographyProps {
     variant?: TypographyVariant

@@ -6,7 +6,7 @@
 */
 import React, { useState } from "react";
 import { Controller } from "react-hook-form";
-import { classNames } from '../helpers/styleHelpers';
+import { classNames } from '../../helpers/styleHelpers';
 import { CheckboxList, ICheckboxProps } from "./Checkbox.types";
 
 const Checkbox = ({
