@@ -3,7 +3,7 @@ import { Typography } from './Typography';
 import { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Typography> = {
-    title: 'Visium Design System/Typogprahy',
+    title: 'Components/Typogprahy',
     component: Typography,
     tags: ["autodocs"],
     argTypes: {

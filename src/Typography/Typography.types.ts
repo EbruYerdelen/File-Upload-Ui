@@ -1,5 +1,4 @@
-export type TypographyVariant = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p"
-export type IUiAlignment=  "left-left" | "text-center" | "text-right"
+import { IUiAlignment, TypographyVariant } from "../interfaces"
 
 export interface ITypographyProps {
     variant?: TypographyVariant
