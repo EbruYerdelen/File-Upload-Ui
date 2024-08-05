@@ -1,5 +1,63 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import RadioButtonCard from "./RadioButtonCard";
+import { useState } from "react";
+
+const meta: Meta<typeof RadioButtonCard> = {
+  component: RadioButtonCard,
+  title: "Components/Radio/RadioButtonCard",
+  parameters: {
+    layout: "centered",
+  },
+  tags: ["autodocs"],
+  argTypes: {
+    title: { control: "text" },
+    description: { control: "text" },
+    checked: { control: "boolean" },
+    onChange: { action: "changed" },
+  },
+};
+
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const Base: Story = {
+  args: {
+    title: "Video Record",
+    description: "Record video during session",
+    checked: false,
+  },
+};
+
+export const Checked: Story = {
+  args: {
+    title: "Video Record",
+    description: "Record video during session",
+    checked: true,
+  },
+};
+
+export const Interactive: Story = {
+  args: {
+    title: "Video Record",
+    description: "Record video during session",
+    checked: false,
+  },
+  render: (args) => {
+    const [isChecked, setIsChecked] = useState(args.checked);
+    return (
+      <RadioButtonCard
+        {...args}
+        checked={isChecked}
+        onChange={(checked) => setIsChecked(checked)}
+      />
+    );
+  },
+};
+
+/*
+import type { Meta, StoryObj } from "@storybook/react";
+import RadioButtonCard from "./RadioButtonCard";
 
 
 const meta: Meta<typeof RadioButtonCard> = {
@@ -27,3 +85,4 @@ export const Base: Story = {
     checked: false,
   },
 };
+*/
