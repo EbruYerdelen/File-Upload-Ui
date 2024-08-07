@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import CheckboxCard from "./CheckboxCard";
 import { FormProvider, useForm } from "react-hook-form";
-import { useState } from "react";
 
 const meta: Meta<typeof CheckboxCard> = {
   component: CheckboxCard,
@@ -14,7 +13,7 @@ const meta: Meta<typeof CheckboxCard> = {
     title: { control: "text" },
     description: { control: "text" },
     checked: { control: "boolean" },
-    onChangeHandle: { action: "changed" },
+    
   },
   decorators: [
     (Story) => (
@@ -44,24 +43,3 @@ export const Checked: Story = {
     checked: true,
   },
 };
-
-
-export const Interactive: Story = {
-  args: {
-    title: "Device & Usage Report",
-    description: "Access device and usage reports",
-    checked: false,
-  },
-  render: (args) => {
-    const [isChecked, setIsChecked] = useState(args.checked);
-    return (
-      <CheckboxCard
-        {...args}
-        checked={isChecked}
-        onChangeHandle={(newChecked) => setIsChecked(newChecked)}
-      />
-    );
-  },
-};
-
-
