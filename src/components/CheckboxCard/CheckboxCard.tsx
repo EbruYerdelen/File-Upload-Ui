@@ -1,61 +1,65 @@
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { Checkbox } from "../Checkbox/Checkbox";
+import { CheckboxList } from "../Checkbox/Checkbox.types";
+import { useForm, FormProvider } from "react-hook-form";
 import { Typography } from "../Typography";
 
-type CheckboxProps = {
+type CheckboxCardProps = {
   title: string;
   description?: string;
   checked: boolean;
+  onChangeHandle: (checked: boolean) => void;
+  id:number,
 };
 
-interface IFormInputs {
-  MyCheckbox: boolean;
-}
-
 const CheckboxCard = ({
-  title = "Device & Usage Report",
-  description = "Access device and usage reports",
+  title,
+  description,
   checked = false,
-}: CheckboxProps) => {
+  onChangeHandle,
+  id
+}: CheckboxCardProps) => {
   const [isChecked, setIsChecked] = useState(checked);
-
-  const { control,setValue } = useForm<IFormInputs>({
-    defaultValues: {
-      MyCheckbox: checked,
+  const methods = useForm();
+  const checkboxList: CheckboxList[] = [
+    {
+      id: 1,
+      selected: isChecked,
+      visible: true,
+      value: "",
     },
-  });
+  ];
 
-  const handleChange = (activeIds: number[]) => {
-    const newCheckedState = activeIds.length > 0;
-    setIsChecked(newCheckedState);
-    setValue("MyCheckbox", newCheckedState);
+  const handleCheckboxChange = (isChecked: boolean) => {
+    setIsChecked(isChecked);
+    onChangeHandle(isChecked);
   };
 
-  useEffect(() => {
-    setIsChecked(checked);
-    setValue("MyCheckbox", checked);
-  }, [checked, setValue]);
-
-
-
-
   return (
-      <div className="w-screen flex items-center p-4">
+    <FormProvider {...methods}>
+      <div
+        data-testid="form-provider"
+        className="w-screen flex flex-row justify-center items-center"
+      >
         <div className="w-full max-w-4xl">
           <div
-            className={`flex justify-start items-center p-4 border bg-primary-50 rounded-xl transition-all duration-150 ease-in-out transform ${isChecked ? " border-2 border-purple-600 scale-[1.03]" : "border-gray-200"}`}
+            className={`flex p-3 border bg-primary-50 rounded-xl transition-all duration-150 ease-in-out transform ${
+              isChecked
+                ? " border-2 border-purple-600 scale-[1.03]"
+                : "border-gray-200"
+            }`}
           >
-            <div className="pb-2">
+            <div className="pb-[8.5px]">
               <Checkbox
-                name="MyCheckbox"
-                control={control}
-                checkboxList={[
-                  { id: 1, selected: isChecked, visible: true, value: "" },
-                ]}
+                checkboxHeaderLabel=""
+                name="checkboxCard"
+                checkboxList={checkboxList}
+                control={methods.control}
                 variant="primary"
                 size="base"
-                onChange={handleChange}
+                onChange={(activeIds) =>
+                  handleCheckboxChange(activeIds.length > 0)
+                }
               />
             </div>
             <div className="flex flex-col justify-center">
@@ -79,11 +83,9 @@ const CheckboxCard = ({
           </div>
         </div>
       </div>
+    </FormProvider>
   );
 };
 
 export default CheckboxCard;
-
-
-
 

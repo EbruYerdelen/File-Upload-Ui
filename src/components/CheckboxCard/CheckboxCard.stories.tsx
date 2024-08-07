@@ -13,7 +13,7 @@ const meta: Meta<typeof CheckboxCard> = {
     title: { control: "text" },
     description: { control: "text" },
     checked: { control: "boolean" },
-    
+    onChangeHandle: { action: "changed" },
   },
   decorators: [
     (Story) => (

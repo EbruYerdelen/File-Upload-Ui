@@ -6,7 +6,9 @@ describe("CheckboxCard", () => {
   const defaultProps = {
     title: "Device & Usage Report",
     description: "Access device and usage reports",
+    onChangeHandle: jest.fn(),
     checked: false,
+    id: 1,
   };
 
   test("renders with default props", () => {
@@ -24,6 +26,8 @@ describe("CheckboxCard", () => {
       title: "Custom Title",
       description: "Custom Description",
       checked: true,
+      onChangeHandle: jest.fn(),
+      id: 1,
     };
     render(<CheckboxCard {...customProps} />);
 
@@ -75,5 +79,50 @@ describe("CheckboxCard", () => {
 
     rerender(<CheckboxCard {...defaultProps} checked={true} />);
     expect(screen.getByRole("checkbox")).toBeChecked();
+  });
+
+  test("calls onChangeHandle when checkbox is clicked", () => {
+    const onChangeHandle = jest.fn();
+    render(<CheckboxCard {...defaultProps} onChangeHandle={onChangeHandle} />);
+    const checkbox = screen.getByRole("checkbox");
+
+    fireEvent.click(checkbox);
+    expect(onChangeHandle).toHaveBeenCalledWith(true);
+
+    fireEvent.click(checkbox);
+    expect(onChangeHandle).toHaveBeenCalledWith(false);
+  });
+
+  test("applies correct text color when checked", () => {
+    render(<CheckboxCard {...defaultProps} checked={true} />);
+    const title = screen.getByText("Device & Usage Report");
+    const description = screen.getByText("Access device and usage reports");
+
+    expect(title).toHaveClass("text-primary-800");
+    expect(description).toHaveClass("text-primary-700");
+  });
+
+  test("applies correct text color when unchecked", () => {
+    render(<CheckboxCard {...defaultProps} />);
+    const title = screen.getByText("Device & Usage Report");
+    const description = screen.getByText("Access device and usage reports");
+
+    expect(title).toHaveClass("text-gray-700");
+    expect(description).toHaveClass("text-gray-600");
+  });
+
+  test("renders checkbox with correct size and variant", () => {
+    render(<CheckboxCard {...defaultProps} />);
+    const checkbox = screen.getByRole("checkbox");
+
+    expect(checkbox).toHaveClass("size-base");
+    expect(checkbox).toHaveClass("variant-primary");
+  });
+
+  test("checkbox is associated with a label", () => {
+    render(<CheckboxCard {...defaultProps} />);
+    const checkbox = screen.getByRole("checkbox");
+
+    expect(checkbox).toHaveAccessibleName("Device & Usage Report");
   });
 });
