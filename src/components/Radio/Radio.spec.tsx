@@ -1,5 +1,4 @@
 // Radio.test.jsx
-import React from 'react'
 import Radio, { Option } from './Radio'
 import { useForm } from 'react-hook-form'
 import { render, screen, fireEvent } from '@testing-library/react'

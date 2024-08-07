@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import Radio from "./Radio";
+import Radio from "../Radio/Radio";
 import { useForm } from "react-hook-form";
+import { Typography } from "../Typography";
 
 type RadioButtonProps = {
   title: string;
@@ -8,7 +9,7 @@ type RadioButtonProps = {
   checked: boolean;
 };
 interface IFormInputs {
-  MyRadioBtn: boolean
+  MyRadioBtn: boolean;
 }
 
 const RadioButtonCard = ({
@@ -18,24 +19,23 @@ const RadioButtonCard = ({
 }: RadioButtonProps) => {
   const [isChecked, setIsChecked] = useState(checked);
 
-
-
-const { control } = useForm<IFormInputs>({
-defaultValues: {
-      MyRadioBtn: false, 
+  const { control } = useForm<IFormInputs>({
+    defaultValues: {
+      MyRadioBtn: false,
     },
-})
+  });
 
   useEffect(() => {
     setIsChecked(checked);
   }, [checked]);
 
-
   return (
     <div className="h-screen flex flex-col justify-center">
       <div className="p-10">
         <div className="flex gap-2 p-4">
-          <div className={`gap-1 p-[4.5px] transition-all duration-150 ease-in-out transform ${isChecked ? "scale-110" : ""}`}>
+          <div
+            className={`gap-1 p-[4.5px] transition-all duration-150 ease-in-out transform ${isChecked ? "scale-110" : ""}`}
+          >
             <Radio
               name="MyRadioBtn"
               option={{ name: "MyRadioBtn", label: "", value: "Checked" }}
@@ -47,13 +47,21 @@ defaultValues: {
           </div>
 
           <div className="flex flex-col justify-center">
-            <div className="text-base font-medium font-inter text-gray-700 ">
-              {title}
-            </div>
+            <Typography
+              text={title}
+              variant="p"
+              isSmall={false}
+              color="text-gray-700"
+              className="font-medium"
+            />
             {description && (
-              <div className="text-[15px] font-normal font-inter text-gray-600">
-                {description}
-              </div>
+              <Typography
+                text={description}
+                variant="p"
+                isSmall={false}
+                color="text-gray-600"
+                className="font-normal"
+              />
             )}
           </div>
         </div>
