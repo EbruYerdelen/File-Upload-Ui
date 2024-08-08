@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Checkbox } from "../Checkbox/Checkbox";
 import { CheckboxList } from "../Checkbox/Checkbox.types";
 import { useForm, FormProvider } from "react-hook-form";
@@ -15,51 +15,60 @@ type CheckboxCardProps = {
 const CheckboxCard = ({
   title,
   description,
-  checked = false,
+  checked,
   onChangeHandle,
   id
 }: CheckboxCardProps) => {
   const [isChecked, setIsChecked] = useState(checked);
-  const methods = useForm();
-  const checkboxList: CheckboxList[] = [
+  const [checkboxList, setCheckboxList] = useState<CheckboxList[]>([
     {
-      id: 1,
+      id: id,
       selected: isChecked,
       visible: true,
       value: "",
     },
-  ];
+  ]);
+  const methods = useForm();
+  
 
   const handleCheckboxChange = (isChecked: boolean) => {
     setIsChecked(isChecked);
     onChangeHandle(isChecked);
   };
+  
+  useEffect(() => {
+    setIsChecked(checked);
+  }, [checked]);
+
+  
+  console.log(isChecked);//isChecked manuel olarak butona tıklayınca gerektiği gibi değişiyor.
+  console.log(checked);//Ancak checked,base story de hep false olarak kalırken checked isimli storyde hep true kalıyor.Toggle yapmıyor.
 
   return (
     <FormProvider {...methods}>
       <div
         data-testid="form-provider"
-        className="w-screen flex flex-row justify-center items-center"
       >
-        <div className="w-full max-w-4xl">
+        <div className="max-w-full m-6 mb-2 mt-2">
           <div
-            className={`flex p-3 border bg-primary-50 rounded-xl transition-all duration-150 ease-in-out transform ${
+            className={`flex p-4 border bg-primary-50 rounded-xl transition-all duration-150 ease-in-out transform ${
               isChecked
-                ? " border-2 border-purple-600 scale-[1.03]"
+                ? " border-2 border-primary-600 scale-[1.01]"
                 : "border-gray-200"
             }`}
           >
-            <div className="pb-[8.5px]">
+            <div>
               <Checkbox
                 checkboxHeaderLabel=""
                 name="checkboxCard"
                 checkboxList={checkboxList}
                 control={methods.control}
                 variant="primary"
-                size="base"
+                size="small"
                 onChange={(activeIds) =>
                   handleCheckboxChange(activeIds.length > 0)
                 }
+                classname="relative top-[-12px] right-[-5px] m-0 p-0"
               />
             </div>
             <div className="flex flex-col justify-center">
@@ -88,4 +97,30 @@ const CheckboxCard = ({
 };
 
 export default CheckboxCard;
+
+/*
+checkBoxList'i state içerisine almadığımda kod aşağıda şekilde idi:
+
+const methods = useForm();
+const checkboxList: CheckboxList[] = [
+    {
+      id: 1,
+      selected: isChecked,
+      visible: true,
+      value: "",
+    },
+  ];
+
+  const handleCheckboxChange = (isChecked: boolean) => {
+    setIsChecked(isChecked);
+    onChangeHandle(isChecked);
+  };
+  
+  useEffect(() => {
+    setIsChecked(checked);
+    
+  }, [checked]);
+  console.log(isChecked);
+*/
+
 

@@ -21,5 +21,6 @@ export interface ICheckboxProps {
     variant?: IUiVariant,
     onChange?: (value: number[]) => void,
     required?: boolean,
-    'data-testid'?: string
+  'data-testid'?: string,
+  classname:string
 }
