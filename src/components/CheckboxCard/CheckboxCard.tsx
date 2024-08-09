@@ -48,10 +48,10 @@ useEffect(() => {
     <FormProvider {...methods}>
       <div data-testid="form-provider" className="max-w-full m-6 mb-2 mt-2">
         <div
-          className={`flex p-4 border bg-primary-50 rounded-xl transition-all duration-150 ease-in-out transform ${
+          className={`flex p-4 border rounded-xl transition-all duration-150 ease-in-out transform ${
             isChecked
-              ? " border-2 border-primary-600 scale-[1.01]"
-              : "border-gray-200"
+              ? " border-2 border-primary-600 scale-[1.01] bg-primary-50"
+              : "border-gray-200 bg-white"
           }`}
         >
           <div>
