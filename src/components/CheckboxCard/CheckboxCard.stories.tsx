@@ -4,12 +4,11 @@ import { FormProvider, useForm } from "react-hook-form";
 
 const meta: Meta<typeof CheckboxCard> = {
   component: CheckboxCard,
-  title: "Components/Checkbox/CheckboxCard",
+  title: "Components/CheckboxCard",
   tags: ["autodocs"],
   parameters: {
-    layout:'fullscreen',
+    layout: "fullscreen",
   },
-
   argTypes: {
     title: { control: "text" },
     description: { control: "text" },
@@ -29,25 +28,24 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-//checked aşağıdaki şekilde değişim gösteriyor ancak kart içerisinde değişim göstermiyor.
-const onChangeHandle = (checked: boolean) => {
-  console.log("Checkbox changed:", checked);
-};
-
 export const Base: Story = {
   args: {
     title: "Device & Usage Report",
     description: "Access device and usage reports",
-    checked:false,
-    onChangeHandle
+    checked: false,
+    id: 1,
+    disabled: false,
+    onChangeHandle: (isChecked: boolean) => {
+      console.log("Checkbox changed:", isChecked);
+    },
   },
 };
 
 export const Checked: Story = {
   args: {
-    title: "Device & Usage Report",
-    description: "Access device and usage reports",
+    ...Base.args,
     checked: true,
-    onChangeHandle,
   },
 };
+
+

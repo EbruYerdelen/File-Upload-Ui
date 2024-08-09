@@ -22,5 +22,5 @@ export interface ICheckboxProps {
     onChange?: (value: number[]) => void,
     required?: boolean,
   'data-testid'?: string,
-  classname:string
+  classname: string,
 }

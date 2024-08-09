@@ -4,7 +4,7 @@
   Changes to implement in next versions:
     - Handle error message
 */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Controller } from "react-hook-form";
 import { classNames } from '../../helpers/styleHelpers';
 import { CheckboxList, ICheckboxProps } from "./Checkbox.types";
@@ -20,7 +20,7 @@ const Checkbox = ({
   required,
   checkboxList,
   orientation,
-  classname
+  classname,
 }: ICheckboxProps): JSX.Element => {
   let LABEL_SPAN_CLASS = "ml-2";
   const [listCheckbox, setListCheckbox] =
@@ -44,7 +44,14 @@ const Checkbox = ({
     field.onChange(activeCheckboxIds);
     if (onChange) onChange(activeCheckboxIds);
   };
+  
 
+  useEffect(() => {
+    setListCheckbox(checkboxList);
+  }, [checkboxList]);
+
+
+  
   return (
     <>
       <Controller

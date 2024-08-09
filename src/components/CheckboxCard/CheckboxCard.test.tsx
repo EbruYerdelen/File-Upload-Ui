@@ -9,6 +9,7 @@ describe("CheckboxCard", () => {
     onChangeHandle: jest.fn(),
     checked: false,
     id: 1,
+    disabled:false,
   };
 
   test("renders with default props", () => {
@@ -28,6 +29,7 @@ describe("CheckboxCard", () => {
       checked: true,
       onChangeHandle: jest.fn(),
       id: 1,
+      disabled:true,
     };
     render(<CheckboxCard {...customProps} />);
 
