@@ -1,4 +1,3 @@
-import React from 'react';
 import { Controller } from 'react-hook-form';
 
 export interface Option {
@@ -14,9 +13,10 @@ interface RadioInputProps {
   variant?: 'default' | 'custom';
   onChange?: (selected: boolean) => void; 
   checked?: boolean; 
+  classname?: string;
 }
 
-const Radio = ({ name, option, control, variant = 'default', onChange,checked }: RadioInputProps) => {
+const Radio = ({ name, option, control, variant = 'default', onChange,checked,classname }: RadioInputProps) => {
   return (
     <Controller
       name={name}
@@ -52,7 +52,7 @@ const Radio = ({ name, option, control, variant = 'default', onChange,checked }:
                     checked ?? field.value === option.value ? 'bg-primary-600 text-white border-primary-600' : 'bg-transparent border-gray-300'
                   }`}
                 >
-                     {(checked ?? field.value === option.value) && '✓'}
+                    {(checked ?? field.value === option.value) && '✓'}
                 </span>
 
                 {option.label}
@@ -69,7 +69,7 @@ const Radio = ({ name, option, control, variant = 'default', onChange,checked }:
               {...field}
               value={option.value}
               checked={checked ?? field.value === option.value} 
-              className="h-3 w-3"
+              className={`h-3 w-3 ${classname ? classname : ""}`}
               onClick={handleChange}
               onChange={handleChange}
             />
