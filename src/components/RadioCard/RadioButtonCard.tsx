@@ -13,8 +13,8 @@ interface IFormInputs {
 }
 
 const RadioButtonCard = ({
-  title = "Video Record ",
-  description = "Record video during session",
+  title,
+  description,
   checked = false,
 }: RadioButtonProps) => {
   const [isChecked, setIsChecked] = useState(checked);
@@ -30,9 +30,8 @@ const RadioButtonCard = ({
   }, [checked]);
 
   return (
-    <div className="h-screen flex flex-col justify-center">
-      <div className="p-10">
-        <div className="flex gap-2 p-4">
+      <div>
+        <div className="flex">
           <div
             className={`gap-1 p-[4.5px] transition-all duration-150 ease-in-out transform ${isChecked ? "scale-110" : ""}`}
           >
@@ -40,9 +39,10 @@ const RadioButtonCard = ({
               name="MyRadioBtn"
               option={{ name: "MyRadioBtn", label: "", value: "Checked" }}
               control={control}
-              variant="custom"
+              variant="default"
               onChange={setIsChecked}
               checked={isChecked}
+              classname="accent-primary-600 hover:accent-primary-700"
             />
           </div>
 
@@ -66,7 +66,6 @@ const RadioButtonCard = ({
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
